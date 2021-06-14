@@ -1,0 +1,70 @@
+﻿body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, img {
+  margin: 0;
+  padding: 0;
+}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	color: rgb(21, 25, 34);
+	font-size:12px;
+}
+a, img{
+	border:none
+}
+a,a:active h4,a:hover h4{
+	text-decoration:none;
+	color:#000
+}
+select{
+	border: 1px solid #ccc;
+	height:30px;
+	width:100%;
+}
+h4.title img{
+	width : 25px;
+	vertical-align:middle
+}
+.clear{
+	clear:both;
+	height:5px
+}
+.bg{
+	background:url('img/bg_thoitiet.gif') repeat-x #fff;
+	padding:10px
+}
+.block{
+	padding-top:20px
+}
+.temp_title, .temp_title img{
+	float:left
+}
+.temp_title img.temp{
+	height:25px;
+	margin-top: 10px;
+}
+.temp_desc{
+	font-size:13px;
+}
+.bor_ctd{
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc
+}
+.ctd{
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc
+}
+.bor_ctd td,.bor_ctd th{
+	padding:5px;
+	text-align:left
+}
+.notice{
+	color:red;
+	padding:10px
+}
+#temp_text{
+	font-size: 25px;
+	font-weight: bold;
+	color: #3d3d3d;
+	margin-top: 13px;
+	margin-left:5px;
+	display: inline-block;
+}
