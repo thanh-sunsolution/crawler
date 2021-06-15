@@ -25,18 +25,22 @@
 
 <script>
 
-    $(document).ready(function(){
-       loadData(); //call the function
+
+
+
+
+$(document).ready(function(){
+   loadData(); //call the function
+});
+
+$('select[name="league"]').on('change',loadData); //assign the function to the change event
+
+function loadData(){
+    var url='include/'+$('select[name="league"] option:selected').val()+'.php';
+    $("#league-display").load(url,function(){
+       //Anything you want do after contents are loaded
     });
-
-    $('select[name="league"]').on('change',loadData); //assign the function to the change event
-
-    function loadData(){
-        var url='include/'+$('select[name="league"] option:selected').val()+'.php';
-        $("#league-display").load(url,function(){
-           //Anything you want do after contents are loaded
-        });
-    }
+}
 
 
 </script>
