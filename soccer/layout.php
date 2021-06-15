@@ -11,9 +11,10 @@
 
 		<?php include('include/soccer_select.php') ;?>
 		
+		
 	</body>
 
-	<script src="script.js"></script>
+	
 	
 
 </html>
