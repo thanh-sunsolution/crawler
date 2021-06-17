@@ -27,7 +27,7 @@
 
         </optgroup>
 
-    <?php }; ?>
+        <?php }; ?>
 
 </select> 
 
@@ -49,9 +49,7 @@
            //Anything you want do after contents are loaded
         });
     }
-
-    
-       
+  
 </script>
 
 
