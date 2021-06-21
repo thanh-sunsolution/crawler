@@ -2,14 +2,13 @@
 
     $id = $_GET['id'];
     $url = 'https://moveek.com/api/v2/cinema?region='.$id.'&ticketing=0';
-
     $content = file_get_contents($url);
 
     $data = json_decode($content, true);
     
 
 ?>
-<select name="result" id="">
+<select name="result" id="cinema">
 
     <option>Chọn rạp</option>
 
@@ -31,9 +30,6 @@
 
 </select> 
 
-
-
-
 <div id="result-display"></div>
 <script>
 
@@ -43,13 +39,13 @@
 
     $('select[name="result"]').on('change',loadData); //assign the function to the change event
 
+  
     function loadData(){
         var url='include/result.php?id='+$('select[name="result"] option:selected').val();
         $("#result-display").load(url,function(){
            //Anything you want do after contents are loaded
         });
     }
-  
 </script>
 
 
