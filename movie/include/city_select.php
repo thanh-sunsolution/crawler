@@ -4,15 +4,15 @@
       $link = "https://moveek.com/lich-chieu/";
       $content = file_get_html2($link);
 
-      echo '<select name="city">';
+      echo '<select name="city" class="city">';
       foreach($content->find('select.btn-select-region option', 0) as $city){
          echo $city->innertext;
       }
       echo '</select>';
-
 ?>
 
-<div id="cinema-display"></div>
+<div id="cinema-display">
+</div>
 
 
 <script>

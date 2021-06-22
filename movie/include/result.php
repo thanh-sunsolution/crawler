@@ -29,7 +29,7 @@
 
 ?>
 
-<div id="date-display"></div>
+<table id="date-display"></table>
 
 <script>
   $('body').on('change', '#date', function () {

@@ -3,6 +3,7 @@
     $id = $_GET['id'];
     $url = 'https://moveek.com/api/v2/cinema?region='.$id.'&ticketing=0';
     $content = file_get_contents($url);
+
     $data = json_decode($content, true);  
 
 ?>
