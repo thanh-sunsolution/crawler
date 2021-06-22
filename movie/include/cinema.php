@@ -3,9 +3,7 @@
     $id = $_GET['id'];
     $url = 'https://moveek.com/api/v2/cinema?region='.$id.'&ticketing=0';
     $content = file_get_contents($url);
-
-    $data = json_decode($content, true);
-    
+    $data = json_decode($content, true);  
 
 ?>
 <select name="result" id="cinema">
@@ -16,7 +14,7 @@
 
         <optgroup value="<?php echo $d['data']['name'];?>">
 
-            <option class="strong"><?php echo $d['data']['name'];?></option>
+            <option class="strong">-----<?php echo $d['data']['name'];?>-----</option>
 
             <?php foreach ($d['cinemas'] as $key => $d) { ?>
 

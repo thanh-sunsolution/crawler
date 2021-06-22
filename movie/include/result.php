@@ -1,13 +1,13 @@
 <?php 
-    $mondayTimestamp = strtotime('monday this week');
+    //$mondayTimestamp = strtotime('monday this week');
     $output = [];
     for ($day = 0; $day < 6; $day++) {
-        $output[] = date('Y-m-d', strtotime(sprintf('+%d days', $day), $mondayTimestamp));
+        $output[] = date('Y-m-d', strtotime(sprintf('+%d day', $day),));
     } 
 ?>
 
 <select name="date" id="date">
-
+    <option value="date">Chọn ngày</option>
     <?php foreach ($output as $day) : ?>
     <option value="<?php echo $day ;?>"><?php echo $day ;?></option>
     <?php endforeach; ?>
@@ -24,10 +24,6 @@
     $content = file_get_html2($url);
 
     foreach($content->find('.showtimes .card-sm') as $list){
-       
-       echo $list;
-        
-        
 
     }    
 
@@ -39,10 +35,10 @@
   $('body').on('change', '#date', function () {
     var ngay = $(this).val();
     var id = $('#cinema').val();
-    var url = './include/du.php';
+    var url = './include/day_select.php';
     $.ajax({
       url: url,
-      method: 'get',
+      method: 'GET',
       data: {
         id: id,
         ngay: ngay

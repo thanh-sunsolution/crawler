@@ -21,12 +21,11 @@ $(document).ready(function(){
    loadData(); //call the function
 });
 
-$('select[name="city"]').on('change',loadData); //assign the function to the change event
+$('select[name="city"]').on('change',loadData); 
 
 function loadData(){
     var url='include/cinema.php?id='+$('select[name="city"] option:selected').val();
     $("#cinema-display").load(url,function(){
-       //Anything you want do after contents are loaded
     });
 }
 
