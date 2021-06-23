@@ -70,14 +70,17 @@ function pr($str){
 	echo '</pre>';
 }
 function curl($url){
-    $headers[]  = "User-Agent:Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+    
+    $headers[]  = "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36";
     $headers[]  = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-    $headers[]  = "Accept-Language:en-us,en;q=0.5";
-    $headers[]  = "Accept-Encoding:gzip,deflate";
+    $headers[]  = "Accept-Language: vi-VN,vi;q=0.9";
+    $headers[]  = "Accept-Encoding: gzip, deflate, br";
     $headers[]  = "Accept-Charset:ISO-8859-1,utf-8;q=0.7,*;q=0.7";
     $headers[]  = "Keep-Alive:115";
     $headers[]  = "Connection:keep-alive";
     $headers[]  = "Cache-Control:max-age=0";
+    $headers[]  = "Cookie: _ga=GA1.2.1915592180.1622437011; _gid=GA1.2.2110348164.1624334338; culture=Vi; _gat=1";
+    
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -85,6 +88,7 @@ function curl($url){
     curl_setopt($curl, CURLOPT_ENCODING, "gzip");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+
     $data = curl_exec($curl);
     curl_close($curl);
     return $data;
@@ -96,27 +100,36 @@ function file_get_html2($url){
 
 function get_web_page( $url )
 {
-	$user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13';
 
-	$options = array(
+	$ch = curl_init( $url );
 
-		CURLOPT_CUSTOMREQUEST  =>"GET",        //set request type post or get
-		CURLOPT_POST           =>false,        //set to GET
-		CURLOPT_USERAGENT      => $user_agent, //set user agent
-		CURLOPT_COOKIEFILE     =>"cookie.txt", //set cookie file
-		CURLOPT_COOKIEJAR      =>"cookie.txt", //set cookie jar
-		CURLOPT_RETURNTRANSFER => true,     // return web page
-		CURLOPT_HEADER         => false,    // don't return headers
-		CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-		CURLOPT_ENCODING       => "",       // handle all encodings
-		CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-		CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-		CURLOPT_TIMEOUT        => 120,      // timeout on response
-		CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-	);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: text/html; charset=utf-8',
+        'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Accept-Encoding: gzip, deflate, br',
+        'Accept-Language: vi-VN,vi;q=0.9',
+        'Cache-Control: max-age=0',
+        'Connection: Keep-Alive',
+        'Cookie: _ga=GA1.2.1915592180.1622437011; _gid=GA1.2.2110348164.1624334338; culture=Vi; _gat=1',
+        'Host: cskh.evnspc.vn',
+        'Referer: https://cskh.evnspc.vn/',
+        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+    ));
+    
+    curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_PROXY);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_CERTINFO, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-	$ch      = curl_init( $url );
-	curl_setopt_array( $ch, $options );
+
+    
+    
+
+   
+
 	$content = curl_exec( $ch );
 	$err     = curl_errno( $ch );
 	$errmsg  = curl_error( $ch );
