@@ -62,7 +62,7 @@ define('HDOM_INFO_ENDSPACE',7);
 define('DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('DEFAULT_BR_TEXT', "\r\n");
 define('DEFAULT_SPAN_TEXT', " ");
-define('MAX_FILE_SIZE', 100000000);
+define('MAX_FILE_SIZE', 9000000);
 
 function pr($str){
 	echo '<pre>';
@@ -72,22 +72,28 @@ function pr($str){
 function curl($url){
     
     $headers[]  = "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36";
-    $headers[]  = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+    $headers[]  = "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
     $headers[]  = "Accept-Language: vi-VN,vi;q=0.9";
     $headers[]  = "Accept-Encoding: gzip, deflate, br";
     $headers[]  = "Accept-Charset:ISO-8859-1,utf-8;q=0.7,*;q=0.7";
     $headers[]  = "Keep-Alive:115";
     $headers[]  = "Connection:keep-alive";
     $headers[]  = "Cache-Control:max-age=0";
-    $headers[]  = "Cookie: _ga=GA1.2.1915592180.1622437011; _gid=GA1.2.2110348164.1624334338; culture=Vi; _gat=1";
+    // $headers[]  =  "Cookie: _ga=GA1.2.1915592180.1622437011; _gid=GA1.2.2110348164.1624334338; culture=Vi";
     
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($curl, CURLOPT_ENCODING, "gzip");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+    //curl_setopt($curl, CURLOPT_HEADER, true);
+    //curl_setopt($curl, CURLOPT_PROXY);
+    //curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    //($curl, CURLOPT_CERTINFO, true);
+    //curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
 
     $data = curl_exec($curl);
     curl_close($curl);
@@ -110,9 +116,6 @@ function get_web_page( $url )
         'Accept-Language: vi-VN,vi;q=0.9',
         'Cache-Control: max-age=0',
         'Connection: Keep-Alive',
-        'Cookie: _ga=GA1.2.1915592180.1622437011; _gid=GA1.2.2110348164.1624334338; culture=Vi; _gat=1',
-        'Host: cskh.evnspc.vn',
-        'Referer: https://cskh.evnspc.vn/',
         'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
     ));
     
@@ -124,21 +127,15 @@ function get_web_page( $url )
     curl_setopt($ch, CURLOPT_CERTINFO, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-
-    
-    
-
-   
-
 	$content = curl_exec( $ch );
-	$err     = curl_errno( $ch );
-	$errmsg  = curl_error( $ch );
+	// $err     = curl_errno( $ch );
+	// $errmsg  = curl_error( $ch );
 	$header  = curl_getinfo( $ch );
 	curl_close( $ch );
 
-	$header['errno']   = $err;
-	$header['errmsg']  = $errmsg;
-	$header['content'] = $content;
+	//$header['errno']   = $err;
+	// $header['errmsg']  = $errmsg;
+	//$header['content'] = $content;
 	return $header;
 }
 
